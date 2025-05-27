@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>直流回路 インタラクティブ問題集</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .content-box {
+            display: none;
+            border-left: 3px solid #10B981; /* Green-500 */
+            padding-left: 1rem;
+            margin-top: 0.5rem;
+            background-color: #f9fafb; /* Gray-50 */
+        }
+        .question-block {
+            background-color: #ffffff;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+            margin-bottom:1rem;
+        }
+        .toggle-button {
+            background-color: #3B82F6; /* Blue-500 */
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 0.375rem;
+            cursor: pointer;
+            border: none;
+            font-weight: 500;
+            transition: background-color 0.2s;
+            margin-right: 0.5rem; /* ボタン間のスペース */
+            margin-bottom: 0.5rem; /* ボタン下のスペース */
+        }
+        .toggle-button:hover {
+            background-color: #2563EB; /* Blue-600 */
+        }
+        .explanation-button {
+            background-color: #10B981; /* Green-500 */
+        }
+        .explanation-button:hover {
+            background-color: #059669; /* Green-600 */
+        }
+        .detail-explanation-button {
+            background-color: #6366F1; /* Indigo-500 */
+        }
+        .detail-explanation-button:hover {
+            background-color: #4F46E5; /* Indigo-600 */
+        }
+        .quiz-button {
+            background-color: #EC4899; /* Pink-500 */
+        }
+        .quiz-button:hover {
+            background-color: #DB2777; /* Pink-600 */
+        }
+        h2 {
+            font-size: 1.5rem; /* text-2xl */
+            font-weight: 600; /* font-semibold */
+            margin-bottom: 1rem;
+            color: #1F2937; /* Gray-800 */
+            border-bottom: 2px solid #3B82F6; /* Blue-500 */
+            padding-bottom: 0.5rem;
+        }
+        h3 {
+            font-size: 1.25rem; /* text-xl */
+            font-weight: 500; /* font-medium */
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+            color: #374151; /* Gray-700 */
+        }
+        h4 {
+            font-size: 1.1rem; /* text-lg */
+            font-weight: 500; /* font-medium */
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+            color: #1e40af; /* blue-800 */
+        }
+        p, li {
+            line-height: 1.6;
+            color: #4B5563; /* Gray-600 */
+            margin-bottom: 0.5rem;
+        }
+        .formula {
+            font-weight: bold;
+            color: #D97706; /* Amber-600 */
+            margin: 0.5rem 0;
+            padding: 0.5rem;
+            background-color: #FFFBEB; /* Amber-50 */
+            border-left: 3px solid #F59E0B; /* Amber-500 */
+            border-radius: 0.25rem;
+        }
+        .important-concept {
+             background-color: #EFF6FF; /* Blue-50 */
+             padding: 0.75rem;
+             border-radius: 0.375rem;
+             border-left: 4px solid #3B82F6; /* Blue-500 */
+             margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 p-4 md:p-8">
+
+    <div class="max-w-3xl mx-auto bg-white shadow-lg rounded-lg p-6 md:p-8">
+        <h1 class="text-3xl font-bold text-center mb-8 text-blue-600">直流回路 インタラクティブ問題集</h1>
+
+        <section class="mb-8">
+            <h2>1. オームの法則</h2>
+            <button class="toggle-button explanation-button mb-2" onclick="toggleVisibility('exp-ohm-summary')">基本公式のポイント解説</button>
+            <div id="exp-ohm-summary" class="content-box">
+                <p>オームの法則は、電気回路における電圧(V)、電流(I)、抵抗(R)の間の関係を示します。</p>
+                <p class="formula">\( I = \frac{V}{R} \) [A]</p>
+                <p class="formula">\( V = IR \) [V]</p>
+                <p class="formula">\( R = \frac{V}{I} \) [Ω]</p>
+                <p>ここで、Vは電圧(ボルト)、Iは電流(アンペア)、Rは抵抗(オーム)です。</p>
+            </div>
+
+            <h3 class="mt-6">オームの法則 詳細解説</h3>
+            <div>
+                <button class="toggle-button detail-explanation-button" onclick="toggleVisibility('content-ohm-detail-1')">① この意味は？</button>
+                <div id="content-ohm-detail-1" class="content-box">
+                    <p>オームの法則は、電気回路における<strong>電圧(V)</strong>、<strong>電流(I)</strong>、<strong>抵抗(R)</strong>の3つの量の間に成り立つ関係を示した法則です。 具体的には、抵抗を流れる電流の大きさは、その抵抗にかかる電圧に比例し、抵抗の大きさに反比例するという関係を表します。</p>
+                </div>
+            </div>
+
+            <div>
+                <button class="toggle-button detail-explanation-button" onclick="toggleVisibility('content-ohm-detail-2')">② これを理解するために、何を理解しないといけないか？</button>
+                <div id="content-ohm-detail-2" class="content-box">
+                    <p>オームの法則を理解するためには、まず以下の3つの基本的な電気の用語とその意味を理解しておく必要があります。</p>
+                    <ul class="list-disc list-inside ml-4">
+                        <li><strong>電圧 (V)</strong>：単位はボルト。電気を流そうとする「力」や「圧力」のようなものです。電池のプラス極とマイナス極の間など、2点間の電気的な高さの差（電位差）とも言えます。</li>
+                        <li><strong>電流 (I)</strong>：単位はアンペア。電気（電荷）が導線を流れる「量」や「勢い」のことです。1秒間に導線の断面を通過する電気の量を表します。</li>
+                        <li><strong>抵抗 (R)</strong>：単位はオーム。電気の「流れにくさ」を表します。物質によって異なり、抵抗が大きいほど電流は流れにくくなります。</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div>
+                <button class="toggle-button detail-explanation-button" onclick="toggleVisibility('content-ohm-detail-3')">③ ②を簡単に解説（なぜこうなるか？）</button>
+                <div id="content-ohm-detail-3" class="content-box">
+                    <p>これらの概念は、電気現象を記述し理解するための基本的な「定義」や「約束事」と捉えることができます。</p>
+                    <ul class="list-disc list-inside ml-4">
+                        <li><strong>電圧 (なぜ？)</strong>：電気が仕事をする能力の源です。例えば、高いところから低いところへ水が流れるように、電位が高いところから低いところへ電流が流れようとします。この「高さの差」が電圧に相当します。電池は化学反応によってこの電位差を作り出しています。</li>
+                        <li><strong>電流 (なぜ？)</strong>：電気の正体である電子（または電荷）が移動することで発生します。電圧という「圧力」がかかると、導体の中を電子が一方向に動き始め、これが電流となります。</li>
+                        <li><strong>抵抗 (なぜ？)</strong>：電流が流れるとき、導体中の原子などに電子が衝突し、その流れが妨げられる現象が抵抗です。物質の種類や形状（太さ、長さ）、温度などによって、この妨げの度合いが変わります。この「妨げの度合い」が抵抗値として表されます。</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div>
+                <button class="toggle-button detail-explanation-button" onclick="toggleVisibility('content-ohm-detail-4')">④ この内容について解説（なぜこうなるか？）</button>
+                <div id="content-ohm-detail-4" class="content-box">
+                    <p>オームの法則は、実験によって見出された経験則です。ゲオルク・オームという物理学者が、様々な物質や条件で電圧と電流の関係を調べた結果、多くの導体において「電流は電圧に比例し、抵抗に反比例する」こと発見しました。</p>
+                    <p>この法則は以下の式で表されます。</p>
+                    <ul class="list-disc list-inside ml-4">
+                        <li><span class="formula">\(I = \frac{V}{R}\)</span> （電流 = 電圧 ÷ 抵抗）
+                            <p class="ml-4"><strong>なぜこうなるか？</strong>：電圧（電気を流す力）が大きくなれば、流れる電流も大きくなります。一方で、抵抗（電気の流れにくさ）が大きくなれば、流れる電流は小さくなります。この関係を最も単純に表したのがこの割り算の形です。</p>
+                        </li>
+                        <li><span class="formula">\(V = IR\)</span> （電圧 = 電流 × 抵抗）
+                            <p class="ml-4"><strong>なぜこうなるか？</strong>：上の式を変形したものです。ある抵抗に電流を流すためには、どれだけの電圧（力）が必要かを示します。電流が大きいほど、また抵抗が大きいほど、必要な電圧は高くなります。</p>
+                        </li>
+                        <li><span class="formula">\(R = \frac{V}{I}\)</span> （抵抗 = 電圧 ÷ 電流）
+                            <p class="ml-4"><strong>なぜこうなるか？</strong>：これも最初の式を変形したものです。ある物体に電圧をかけたときに流れる電流を測定すれば、その物体の抵抗値を計算できることを示しています。</p>
+                        </li>
+                    </ul>
+                    <p>この法則が成り立つのは、金属などの多くの導体（オーム性抵抗）において、電場（電圧から生じる）の強さと電流密度が比例関係にあるという物質の性質に基づいています。</p>
+                </div>
+            </div>
+            
+            <div>
+                <button class="toggle-button detail-explanation-button" onclick="toggleVisibility('content-ohm-detail-5')">⑤ ②と④をセットで 中学生でわかるレベルに説明（なぜこうなるか？）</button>
+                <div id="content-ohm-detail-5" class="content-box important-concept">
+                    <h4>水の流れで例えると…</h4>
+                    <ul class="list-disc list-inside ml-4">
+                        <li><strong>電圧 (V)</strong> → <strong>ポンプの力</strong> または <strong>坂道の傾斜</strong>
+                            <p class="ml-4">ポンプの力が強いほど、水は勢いよく流れます。坂道の傾斜が急なほど、水は速く流れます。これが電気を流そうとする力、電圧です。</p>
+                        </li>
+                        <li><strong>電流 (I)</strong> → <strong>流れる水の量</strong>
+                            <p class="ml-4">ホースを流れる水の量が電流にあたります。ポンプの力が強ければ（電圧が高ければ）、たくさんの水が流れます（電流が大きい）。</p>
+                        </li>
+                        <li><strong>抵抗 (R)</strong> → <strong>ホースの細さ</strong> や <strong>ホースの中の障害物</strong>
+                            <p class="ml-4">ホースが細かったり、中にゴミが詰まっていたりすると、水は流れにくくなります。これが電気の流れにくさ、抵抗です。</p>
+                        </li>
+                    </ul>
+                    <p><strong>オームの法則 \(I = V/R\) は、この水の流れで考えると…</strong></p>
+                    <p>「流れる水の量（電流）」は、「ポンプの力（電圧）」が強いほど多くなり、「ホースの細さ（抵抗）」が細い（抵抗が大きい）ほど少なくなる、ということです。</p>
+                    <ul class="list-disc list-inside ml-4">
+                        <li>ポンプの力（電圧）が2倍になったら？ → 流れる水の量（電流）もだいたい2倍になります。</li>
+                        <li>ホースがすごく細く（抵抗が大きく）なったら？ → ポンプの力が同じでも、流れる水の量（電流）は減ってしまいます。</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div>
+                <button class="toggle-button detail-explanation-button" onclick="toggleVisibility('content-ohm-detail-6')">⑥ 再度公式の計算式など説明</button>
+                <div id="content-ohm-detail-6" class="content-box">
+                    <p>オームの法則は、以下の3つの形で表すことができます。これらはすべて同じ関係を示しており、求めるものに応じて使い分けます。</p>
+                    <ol class="list-decimal list-inside ml-4">
+                        <li><strong>電流 \(I\) を求めたいとき：</strong>
+                            <p class="formula">\(I = \frac{V}{R}\) [A]</p>
+                            <p class="ml-4">意味：電流は、電圧を抵抗で割った値になる。</p>
+                        </li>
+                        <li><strong>電圧 \(V\) を求めたいとき：</strong>
+                            <p class="formula">\(V = IR\) [V]</p>
+                            <p class="ml-4">意味：電圧は、電流と抵抗を掛けた値になる。</p>
+                        </li>
+                        <li><strong>抵抗 \(R\) を求めたいとき：</strong>
+                            <p class="formula">\(R = \frac{V}{I}\) [Ω]</p>
+                            <p class="ml-4">意味：抵抗は、電圧を電流で割った値になる。</p>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+
+            <h3 class="mt-6">⑦ オームの法則 理解度テスト</h3>
+            <div class="question-block">
+                <h4>問題 1 (基本計算)</h4>
+                <p>ある抵抗に 12V の電圧を加えたところ、0.3A の電流が流れました。この抵抗の抵抗値は何Ωですか？</p>
+                <button class="toggle-button quiz-button mt-2" onclick="toggleVisibility('ans-ohm-quiz-1')">解答を表示/非表示</button>
+                <div id="ans-ohm-quiz-1" class="content-box">
+                    <p><strong>解答:</strong> \( R = \frac{V}{I} = \frac{12\,V}{0.3\,A} = 40\,\Omega \)</p>
+                </div>
+            </div>
+            <div class="question-block">
+                <h4>問題 2 (基本計算)</h4>
+                <p>25Ω の抵抗に 0.4A の電流を流すためには、何Vの電圧を加える必要がありますか？</p>
+                <button class="toggle-button quiz-button mt-2" onclick="toggleVisibility('ans-ohm-quiz-2')">解答を表示/非表示</button>
+                <div id="ans-ohm-quiz-2" class="content-box">
+                    <p><strong>解答:</strong> \( V = IR = 0.4\,A \times 25\,\Omega = 10\,V \)</p>
+                </div>
+            </div>
+            <div class="question-block">
+                <h4>問題 3 (概念理解)</h4>
+                <p>ある回路で、抵抗の値を変えずに電圧を2倍にした場合、流れる電流はどうなりますか？</p>
+                <button class="toggle-button quiz-button mt-2" onclick="toggleVisibility('ans-ohm-quiz-3')">解答を表示/非表示</button>
+                <div id="ans-ohm-quiz-3" class="content-box">
+                    <p><strong>解答:</strong> 電流も2倍になります。オームの法則 \(I = V/R\) より、Rが一定ならIはVに比例するためです。</p>
+                </div>
+            </div>
+             <div class="question-block">
+                <h4>問題 4 (概念理解)</h4>
+                <p>ある回路で、電圧を変えずに抵抗の値を半分にした場合、流れる電流はどうなりますか？</p>
+                <button class="toggle-button quiz-button mt-2" onclick="toggleVisibility('ans-ohm-quiz-4')">解答を表示/非表示</button>
+                <div id="ans-ohm-quiz-4" class="content-box">
+                    <p><strong>解答:</strong> 電流は2倍になります。オームの法則 \(I = V/R\) より、Vが一定ならIはRに反比例するためです。抵抗が半分になると、電流は2倍になります。</p>
+                </div>
+            </div>
+            <div class="question-block">
+                <h4>問題 5 (用語の理解)</h4>
+                <p>「電気を流そうとする力や圧力」を表す電気の量は何ですか？また、その単位は何ですか？</p>
+                <button class="toggle-button quiz-button mt-2" onclick="toggleVisibility('ans-ohm-quiz-5')">解答を表示/非表示</button>
+                <div id="ans-ohm-quiz-5" class="content-box">
+                    <p><strong>解答:</strong> 電圧。単位はボルト[V]です。</p>
+                </div>
+            </div>
+             <div class="question-block">
+                <h4>問題 6 (水の流れの例え)</h4>
+                <p>オームの法則を水の流れに例えたとき、「ホースの細さや障害物」に相当する電気の量は何ですか？</p>
+                <button class="toggle-button quiz-button mt-2" onclick="toggleVisibility('ans-ohm-quiz-6')">解答を表示/非表示</button>
+                <div id="ans-ohm-quiz-6" class="content-box">
+                    <p><strong>解答:</strong> 抵抗[R]です。</p>
+                </div>
+            </div>
+
+        </section>
+
+        <section class="mb-8">
+            <h2>2. 電気抵抗</h2>
+            <button class="toggle-button explanation-button mb-2" onclick="toggleVisibility('exp-resistance')">ポイント解説を表示/非表示</button>
+            <div id="exp-resistance" class="content-box">
+                <p>電気抵抗($R$)は、導体の材質、長さ($l$)、断面積($A$)によって決まります。抵抗率を $\rho$ (ロー)とすると、以下の式で表されます。</p>
+                <p class="formula">\( R = \rho \frac{l}{A} \) [Ω]</p>
+                <ul>
+                    <li>$R$: 電気抵抗 [Ω]</li>
+                    <li>$\rho$: 抵抗率 [Ω·m]</li>
+                    <li>$l$: 導体の長さ [m]</li>
+                    <li>$A$: 導体の断面積 [m²]</li>
+                </ul>
+                <p>抵抗は長さに比例し、断面積に反比例します。</p>
+            </div>
+
+            <div class="question-block mt-4">
+                <h3>問題 2.1</h3>
+                <p>抵抗率が \(1.72 \times 10^{-8}\,\Omega \cdot m\) の銅線があります。この銅線の長さが 50m で、断面積が \(1.0 \times 10^{-6}\,m^2\) のとき、この銅線の電気抵抗は何Ωですか？</p>
+                <button class="toggle-button mt-2" onclick="toggleVisibility('ans-resistance-q1')">解答を表示/非表示</button>
+                <div id="ans-resistance-q1" class="content-box">
+                    <p><strong>解答:</strong></p>
+                    <p>公式 \( R = \rho \frac{l}{A} \) を使用します。</p>
+                    <p>\( R = (1.72 \times 10^{-8}\,\Omega \cdot m) \times \frac{50\,m}{1.0 \times 10^{-6}\,m^2} \)</p>
+                    <p>\( R = \frac{1.72 \times 50 \times 10^{-8}}{1.0 \times 10^{-6}}\,\Omega = \frac{86 \times 10^{-8}}{10^{-6}}\,\Omega = 86 \times 10^{-2}\,\Omega = 0.86\,\Omega \)</p>
+                    <p>答え: 0.86Ω</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-8">
+            <h2>3. 導線の断面積</h2>
+            <button class="toggle-button explanation-button mb-2" onclick="toggleVisibility('exp-area')">ポイント解説を表示/非表示</button>
+            <div id="exp-area" class="content-box">
+                <p>導線の断面が円形である場合、その断面積($A$)は半径($r$)または直径($D$)を用いて計算できます。円周率を $\pi$ とします。</p>
+                <p class="formula">半径 $r$ を使う場合: \( A = \pi r^2 \) [m²]</p>
+                <p class="formula">直径 $D$ を使う場合: \( A = \frac{\pi D^2}{4} \) [m²]</p>
+                <p>\( (r = D/2) \)</p>
+            </div>
+
+            <div class="question-block mt-4">
+                <h3>問題 3.1</h3>
+                <p>直径が 1.6 mm の銅線の断面積は何 m² ですか？ (円周率 \( \pi \approx 3.14 \) として計算してください)</p>
+                <button class="toggle-button mt-2" onclick="toggleVisibility('ans-area-q1')">解答を表示/非表示</button>
+                <div id="ans-area-q1" class="content-box">
+                    <p><strong>解答:</strong></p>
+                    <p>まず、直径をメートルに変換します: \( D = 1.6\,mm = 1.6 \times 10^{-3}\,m \)</p>
+                    <p>公式 \( A = \frac{\pi D^2}{4} \) を使用します。</p>
+                    <p>\( A = \frac{3.14 \times (1.6 \times 10^{-3}\,m)^2}{4} = \frac{3.14 \times 2.56 \times 10^{-6}\,m^2}{4} \)</p>
+                    <p>\( A = \frac{8.0384 \times 10^{-6}\,m^2}{4} \approx 2.0096 \times 10^{-6}\,m^2 \)</p>
+                    <p>答え: 約 \(2.01 \times 10^{-6}\,m^2\) (または 2.01 mm²)</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-8">
+            <h2>4. 抵抗率 \(\rho[\Omega\cdot m]\)</h2>
+            <button class="toggle-button explanation-button mb-2" onclick="toggleVisibility('exp-resistivity')">ポイント解説を表示/非表示</button>
+            <div id="exp-resistivity" class="content-box">
+                <p>抵抗率($\rho$)は、物質固有の電気の流れにくさを示す値です。単位はオームメートル[Ω·m]です。</p>
+                <p>定義: 断面積が $1\,m^2$ で長さが $1\,m$ のその物質の柱が持つ抵抗値。</p>
+                <p>抵抗率が小さい物質ほど電気が流れやすく（良導体）、大きいほど流れにくい（絶縁体に近い）です。</p>
+            </div>
+
+            <div class="question-block mt-4">
+                <h3>問題 4.1</h3>
+                <p>物質Xの抵抗率は \(1.6 \times 10^{-8}\,\Omega \cdot m\)、物質Yの抵抗率は \(5.0 \times 10^{14}\,\Omega \cdot m\) です。どちらの物質がより電気を通しやすいですか？また、その理由を簡潔に説明してください。</p>
+                <button class="toggle-button mt-2" onclick="toggleVisibility('ans-resistivity-q1')">解答を表示/非表示</button>
+                <div id="ans-resistivity-q1" class="content-box">
+                    <p><strong>解答:</strong></p>
+                    <p>物質Xの方がより電気を通しやすいです。</p>
+                    <p>理由: 抵抗率は電気の流れにくさを示します。物質Xの抵抗率 (\(1.6 \times 10^{-8}\,\Omega \cdot m\)) は、物質Yの抵抗率 (\(5.0 \times 10^{14}\,\Omega \cdot m\)) よりもはるかに小さいため、物質Xの方が電気が流れやすい（抵抗が小さい）と言えます。</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-8">
+            <h2>5. 抵抗の温度変化</h2>
+            <button class="toggle-button explanation-button mb-2" onclick="toggleVisibility('exp-temp-change')">ポイント解説を表示/非表示</button>
+            <div id="exp-temp-change" class="content-box">
+                <p>多くの導体では、温度が変化すると電気抵抗の値も変化します。一般に金属では温度が上昇すると抵抗も増加します。</p>
+                <p>温度 $t_1$ での抵抗値を $R_1$、その時の抵抗温度係数を $a_1$ とすると、温度が $t_2$ に変化したときの抵抗値 $R_2$ は以下の式で近似的に求められます。</p>
+                <p class="formula">\( R_2 = R_1 \{1 + a_1 (t_2 - t_1)\} \) [Ω]</p>
+                <ul>
+                    <li>$R_1$: 温度 $t_1$ での抵抗値 [Ω]</li>
+                    <li>$R_2$: 温度 $t_2$ での抵抗値 [Ω]</li>
+                    <li>$a_1$: 温度 $t_1$ における抵抗温度係数 [/℃ または ℃⁻¹]</li>
+                    <li>$t_1$: 基準温度 [℃]</li>
+                    <li>$t_2$: 変化後の温度 [℃]</li>
+                </ul>
+            </div>
+
+            <div class="question-block mt-4">
+                <h3>問題 5.1</h3>
+                <p>ある金属線の抵抗は \(20\,^\circ C\) のときに \(2.5\,\Omega\) でした。この金属線の \(20\,^\circ C\) における抵抗温度係数を \(0.0040\,^\circ C^{-1}\) とすると、温度が \(70\,^\circ C\) になったときの抵抗値は何Ωですか？</p>
+                <button class="toggle-button mt-2" onclick="toggleVisibility('ans-temp-change-q1')">解答を表示/非表示</button>
+                <div id="ans-temp-change-q1" class="content-box">
+                    <p><strong>解答:</strong></p>
+                    <p>公式 \( R_2 = R_1 \{1 + a_1 (t_2 - t_1)\} \) を使用します。</p>
+                    <p>与えられた値: \(R_1 = 2.5\,\Omega\), \(t_1 = 20\,^\circ C\), \(a_1 = 0.0040\,^\circ C^{-1}\), \(t_2 = 70\,^\circ C\)</p>
+                    <p>\( R_2 = 2.5\,\Omega \times \{1 + 0.0040\,^\circ C^{-1} \times (70\,^\circ C - 20\,^\circ C)\} \)</p>
+                    <p>\( R_2 = 2.5 \times \{1 + 0.0040 \times 50\} \)</p>
+                    <p>\( R_2 = 2.5 \times \{1 + 0.20\} \)</p>
+                    <p>\( R_2 = 2.5 \times 1.20 = 3.0\,\Omega \)</p>
+                    <p>答え: 3.0Ω</p>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <script>
+        function toggleVisibility(elementId) {
+            const element = document.getElementById(elementId);
+            if (element) {
+                if (element.style.display === 'none' || element.style.display === '') {
+                    element.style.display = 'block';
+                } else {
+                    element.style.display = 'none';
+                }
+            }
+        }
+    </script>
+
+</body>
+</html>
